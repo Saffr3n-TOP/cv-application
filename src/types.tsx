@@ -2,6 +2,7 @@ export type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 export type EditMode = {
   contact: boolean;
+  education: boolean;
 };
 export type SetEditMode = SetState<EditMode>;
 
@@ -11,6 +12,12 @@ export type Data = {
     email: string;
     phone: string;
   };
+  education: {
+    school: string;
+    degree: string;
+    start: string;
+    end: string;
+  };
 };
 export type SetData = SetState<Data>;
 
@@ -18,10 +25,8 @@ export type GlobalProps = {
   setEditMode: SetEditMode;
   setData?: SetData;
 };
-
-export type ContactProps = GlobalProps & {
-  data: Data['contact'];
-};
+export type ContactProps = GlobalProps & { data: Data['contact'] };
+export type EducationProps = GlobalProps & { data: Data['education'] };
 
 export type ReactNode = React.ReactNode;
 

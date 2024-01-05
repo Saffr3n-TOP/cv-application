@@ -2,11 +2,13 @@ import type { EditMode, Data } from './types';
 import { useState } from 'react';
 import ContactForm from './components/ContactForm';
 import ContactSection from './components/ContactSection';
+import EducationForm from './components/EducationForm';
 import './styles/app.sass';
 
 export default function App() {
   const [editMode, setEditMode] = useState<EditMode>({
-    contact: true
+    contact: true,
+    education: true
   });
 
   const [data, setData] = useState<Data>({
@@ -14,6 +16,12 @@ export default function App() {
       name: '',
       email: '',
       phone: ''
+    },
+    education: {
+      school: '',
+      degree: '',
+      start: '',
+      end: ''
     }
   });
 
@@ -28,6 +36,14 @@ export default function App() {
       ) : (
         <ContactSection setEditMode={setEditMode} data={data.contact} />
       )}
+
+      {editMode.education ? (
+        <EducationForm
+          setEditMode={setEditMode}
+          data={data.education}
+          setData={setData}
+        />
+      ) : null}
     </>
   );
 }
