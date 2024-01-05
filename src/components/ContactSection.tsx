@@ -1,16 +1,16 @@
-import type { GlobalProps } from '../types';
+import type { ContactProps } from '../types';
 import Section, { SectionItem } from './Section';
 
-export default function ContactSection({ setEditMode }: GlobalProps) {
+export default function ContactSection({ setEditMode, data }: ContactProps) {
   const onEdit = () => {
     setEditMode((prevState) => ({ ...prevState, contact: true }));
   };
 
   return (
     <Section onEdit={onEdit}>
-      <SectionItem label="Full Name" data="Temp Name" />
-      <SectionItem label="Email" data="temp@mail.xyz" />
-      <SectionItem label="Phone Number" data="5555-555-555" />
+      <SectionItem label="Full Name" data={data.name} />
+      <SectionItem label="Email" data={data.email} />
+      <SectionItem label="Phone Number" data={data.phone} />
     </Section>
   );
 }
