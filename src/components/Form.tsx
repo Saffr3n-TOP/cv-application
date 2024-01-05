@@ -15,6 +15,13 @@ type FormFieldProps = {
   required?: boolean;
 };
 
+type FormDatesRangeProps = {
+  id: string;
+  label: string;
+  defaultStart: string;
+  defaultEnd: string;
+};
+
 export default function Form({ children, onSubmit }: FormProps) {
   return (
     <form noValidate className="form" onSubmit={onSubmit}>
@@ -45,11 +52,28 @@ export function FormField({
   );
 }
 
-// export function FormDatesRange({ id, label, defaultValue }: FormFieldProps) {
-//   return (
-//     <div className="form__dates">
-//       <FormField id={`${id}-start`} label={`${label} Start`} defaultValue={def} type="date" />
-//       <FormField id={`${id}-end`} label={`${label} Start`} type="date" />
-//     </div>
-//   );
-// }
+export function FormDatesRange({
+  id,
+  label,
+  defaultStart,
+  defaultEnd
+}: FormDatesRangeProps) {
+  return (
+    <div className="form__dates">
+      <FormField
+        id={`${id}-start`}
+        label={`${label} Start`}
+        defaultValue={defaultStart}
+        type="date"
+        required
+      />
+
+      <FormField
+        id={`${id}-end`}
+        label={`${label} Start`}
+        defaultValue={defaultEnd}
+        type="date"
+      />
+    </div>
+  );
+}
