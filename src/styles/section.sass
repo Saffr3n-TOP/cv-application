@@ -1,0 +1,17 @@
+@use 'vars' as *
+
+.section
+  display: grid
+  gap: $default-spacing
+  padding: $default-spacing
+  border: 1px solid black
+  list-style: none
+
+  &__item
+    padding: calc( 1rem / 8 )
+
+  &__label
+    font-size: 0.8rem
+
+  &__data
+    font-weight: bold

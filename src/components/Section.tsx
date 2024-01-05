@@ -1,5 +1,6 @@
 import { ReactNode, MouseEventHandler } from '../types';
 import Button from './Button';
+import '../styles/section.sass';
 
 type SectionProps = {
   children: ReactNode;
