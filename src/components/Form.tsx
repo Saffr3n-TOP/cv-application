@@ -1,5 +1,6 @@
 import type { ReactNode, FormEventHandler, InputTypeAttribute } from '../types';
 import Button from './Button';
+import '../styles/form.sass';
 
 type FormProps = {
   children: ReactNode;

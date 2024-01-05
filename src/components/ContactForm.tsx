@@ -1,6 +1,5 @@
 import type { ContactProps, FormEvent } from '../types';
 import Form, { FormField } from './Form';
-import '../styles/form.sass';
 
 export default function ContactForm({
   setEditMode,
