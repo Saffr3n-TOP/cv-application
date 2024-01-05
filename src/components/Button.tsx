@@ -8,11 +8,7 @@ type ButtonProps = {
 
 export default function Button({ type, label, onClick }: ButtonProps) {
   return (
-    <button
-      type={type}
-      className={`button${type === 'submit' ? ' form__button' : ''}`}
-      onClick={onClick}
-    >
+    <button type={type} className="button" onClick={onClick}>
       {label}
     </button>
   );
