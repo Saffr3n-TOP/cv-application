@@ -5,8 +5,22 @@ export type EditMode = {
 };
 export type SetEditMode = SetState<EditMode>;
 
+export type Data = {
+  contact: {
+    name: string;
+    email: string;
+    phone: string;
+  };
+};
+export type SetData = SetState<Data>;
+
 export type GlobalProps = {
   setEditMode: SetEditMode;
+  setData?: SetData;
+};
+
+export type ContactProps = GlobalProps & {
+  data: Data['contact'];
 };
 
 export type ReactNode = React.ReactNode;
