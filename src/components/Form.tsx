@@ -9,7 +9,9 @@ type FormProps = {
 type FormFieldProps = {
   id: string;
   label: string;
+  defaultValue: string;
   type?: InputTypeAttribute;
+  required?: boolean;
 };
 
 export default function Form({ children, onSubmit }: FormProps) {
@@ -21,20 +23,32 @@ export default function Form({ children, onSubmit }: FormProps) {
   );
 }
 
-export function FormField({ id, label, type = 'text' }: FormFieldProps) {
+export function FormField({
+  id,
+  label,
+  defaultValue,
+  type = 'text',
+  required = false
+}: FormFieldProps) {
   return (
     <label htmlFor={id} className="form__field">
       <span className="form__label">{label}</span>
-      <input type={type} id={id} className="input form__input" />
+      <input
+        type={type}
+        id={id}
+        defaultValue={defaultValue}
+        className="input form__input"
+        required={required}
+      />
     </label>
   );
 }
 
-export function FormDatesRange({ id, label }: FormFieldProps) {
-  return (
-    <div className="form__dates">
-      <FormField id={`${id}-start`} label={`${label} Start`} type="date" />
-      <FormField id={`${id}-end`} label={`${label} Start`} type="date" />
-    </div>
-  );
-}
+// export function FormDatesRange({ id, label, defaultValue }: FormFieldProps) {
+//   return (
+//     <div className="form__dates">
+//       <FormField id={`${id}-start`} label={`${label} Start`} defaultValue={def} type="date" />
+//       <FormField id={`${id}-end`} label={`${label} Start`} type="date" />
+//     </div>
+//   );
+// }
