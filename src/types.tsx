@@ -6,18 +6,20 @@ export type EditMode = {
 };
 export type SetEditMode = SetState<EditMode>;
 
+export type ContactData = {
+  name: string;
+  email: string;
+  phone: string;
+};
+export type EducationData = {
+  school: string;
+  degree: string;
+  start: string;
+  end: string;
+};
 export type Data = {
-  contact: {
-    name: string;
-    email: string;
-    phone: string;
-  };
-  education: {
-    school: string;
-    degree: string;
-    start: string;
-    end: string;
-  };
+  contact: ContactData;
+  education: EducationData[];
 };
 export type SetData = SetState<Data>;
 
