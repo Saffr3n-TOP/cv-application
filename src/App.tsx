@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ContactForm from './components/ContactForm';
 import ContactSection from './components/ContactSection';
 import EducationForm from './components/EducationForm';
+import EducationSection from './components/EducationSection';
 import './styles/app.sass';
 
 export default function App() {
@@ -17,12 +18,14 @@ export default function App() {
       email: '',
       phone: ''
     },
-    education: {
-      school: '',
-      degree: '',
-      start: '',
-      end: ''
-    }
+    education: [
+      {
+        school: '',
+        degree: '',
+        start: '',
+        end: ''
+      }
+    ]
   });
 
   return (
@@ -43,7 +46,9 @@ export default function App() {
           data={data.education}
           setData={setData}
         />
-      ) : null}
+      ) : (
+        <EducationSection setEditMode={setEditMode} data={data.education} />
+      )}
     </>
   );
 }
