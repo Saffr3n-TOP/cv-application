@@ -4,12 +4,14 @@ import ContactForm from './components/ContactForm';
 import ContactSection from './components/ContactSection';
 import EducationForm from './components/EducationForm';
 import EducationSection from './components/EducationSection';
+import PracticeForm from './components/PracticeForm';
 import './styles/app.sass';
 
 export default function App() {
   const [editMode, setEditMode] = useState<EditMode>({
     contact: true,
-    education: true
+    education: true,
+    practice: true
   });
 
   const [data, setData] = useState<Data>({
@@ -22,6 +24,15 @@ export default function App() {
       {
         school: '',
         degree: '',
+        start: '',
+        end: ''
+      }
+    ],
+    practice: [
+      {
+        company: '',
+        title: '',
+        description: '',
         start: '',
         end: ''
       }
@@ -49,6 +60,14 @@ export default function App() {
       ) : (
         <EducationSection setEditMode={setEditMode} data={data.education} />
       )}
+
+      {editMode.practice ? (
+        <PracticeForm
+          setEditMode={setEditMode}
+          data={data.practice}
+          setData={setData}
+        />
+      ) : null}
     </>
   );
 }
