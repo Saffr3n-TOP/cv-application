@@ -5,6 +5,7 @@ import ContactSection from './components/ContactSection';
 import EducationForm from './components/EducationForm';
 import EducationSection from './components/EducationSection';
 import PracticeForm from './components/PracticeForm';
+import PracticeSection from './components/PracticeSection';
 import './styles/app.sass';
 
 export default function App() {
@@ -67,7 +68,9 @@ export default function App() {
           data={data.practice}
           setData={setData}
         />
-      ) : null}
+      ) : (
+        <PracticeSection setEditMode={setEditMode} data={data.practice} />
+      )}
     </>
   );
 }
