@@ -70,7 +70,7 @@ export function FormDatesRange({
 
       <FormField
         id={`${id}-end`}
-        label={`${label} Start`}
+        label={`${label} End`}
         defaultValue={defaultEnd}
         type="date"
       />
