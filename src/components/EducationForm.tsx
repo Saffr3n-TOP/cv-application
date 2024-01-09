@@ -1,4 +1,4 @@
-import type { EducationProps, FormEvent } from '../types';
+import type { EducationProps, Data, FormEvent } from '../types';
 import Form, { FormField, FormDatesRange } from './Form';
 
 export default function EducationForm({
@@ -10,46 +10,74 @@ export default function EducationForm({
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
-    const [school, degree, start, end] = [
-      ...(form.querySelectorAll('.input') as NodeListOf<HTMLInputElement>)
-    ].map((input) => input.value);
+    const fieldsets = form.querySelectorAll(
+      '.form__set'
+    ) as NodeListOf<HTMLFieldSetElement>;
 
     if (!form.checkValidity()) {
       form.reportValidity();
     } else {
-      setData!((prevState) => ({
-        ...prevState,
-        education: { school, degree, start, end }
-      }));
+      const data: Data['education'] = [];
 
+      fieldsets.forEach((set) => {
+        const [school, degree, start, end] = [
+          ...(set.querySelectorAll('.input') as NodeListOf<HTMLInputElement>)
+        ].map((input) => input.value);
+
+        data.push({ school, degree, start, end });
+      });
+
+      setData!((prevState) => ({ ...prevState, education: data }));
       setEditMode((prevState) => ({ ...prevState, education: false }));
     }
   };
 
+  const onAdd = () => {
+    setData!((prevState) => ({
+      ...prevState,
+      education: [
+        ...prevState.education,
+        { school: '', degree: '', start: '', end: '' }
+      ]
+    }));
+  };
+
   return (
     <Form onSubmit={onSubmit}>
-      <FormField
-        id="school"
-        label="School"
-        defaultValue={data.school}
-        type="text"
-        required
-      />
+      {data.map((school, i) => (
+        <>
+          <fieldset className="form__set">
+            <FormField
+              id={`school-${i + 1}`}
+              label="School"
+              defaultValue={school.school}
+              type="text"
+              required
+            />
+            <FormField
+              id={`degree-${i + 1}`}
+              label="Degree"
+              defaultValue={school.degree}
+              type="text"
+              required
+            />
+            <FormDatesRange
+              id={`education-${i + 1}`}
+              label="Education"
+              defaultStart={school.start}
+              defaultEnd={school.end}
+            />
+          </fieldset>
 
-      <FormField
-        id="degree"
-        label="Degree"
-        defaultValue={data.degree}
-        type="text"
-        required
-      />
+          <hr />
+        </>
+      ))}
 
-      <FormDatesRange
-        id="education"
-        label="Education"
-        defaultStart={data.start}
-        defaultEnd={data.end}
-      />
+      <button type="button" className="button button_small" onClick={onAdd}>
+        Add
+      </button>
+
+      <hr />
     </Form>
   );
 }
