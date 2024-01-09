@@ -51,6 +51,8 @@ export default function ContactForm({
         type="tel"
         required
       />
+
+      <hr />
     </Form>
   );
 }

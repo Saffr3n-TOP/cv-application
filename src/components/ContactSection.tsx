@@ -11,6 +11,7 @@ export default function ContactSection({ setEditMode, data }: ContactProps) {
       <SectionItem label="Full Name" data={data.name} />
       <SectionItem label="Email" data={data.email} />
       <SectionItem label="Phone Number" data={data.phone} />
+      <hr />
     </Section>
   );
 }
