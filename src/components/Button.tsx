@@ -1,4 +1,5 @@
 import type { ButtonTypeAttribute, MouseEventHandler } from '../types';
+import '../styles/button.sass';
 
 type ButtonProps = {
   type: ButtonTypeAttribute;
